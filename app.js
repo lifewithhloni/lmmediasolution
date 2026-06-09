@@ -2,9 +2,14 @@ const { createElement: h, useEffect, useMemo, useState } = React;
 const motionApi = window.Motion || window.framerMotion || {};
 const motion = motionApi.motion || new Proxy({}, { get: (_, tag) => tag });
 
-const navItems = ["Home", "About", "Services", "Pricing", "Blog", "Contact"];
+const navItems = ["Home", "About", "Services", "Pricing", "Articles", "Contact"];
 const phone = "0726559998";
 const whatsapp = `https://wa.me/27${phone.slice(1)}?text=${encodeURIComponent("Hi LM Media Solutions, I would like to book a free consultation.")}`;
+
+function whatsappForPackage(category, name, price, suffix) {
+  const message = `Hi LM Media Solutions, I would like to request the ${name} package under ${category} (${price}${suffix || ""}). Please send me the next steps.`;
+  return `https://wa.me/27${phone.slice(1)}?text=${encodeURIComponent(message)}`;
+}
 
 const icons = {
   design: "✦",
@@ -99,12 +104,84 @@ const pricingGroups = [
 ];
 
 const posts = [
-  ["Marketing", "How strategic content turns attention into qualified leads", "A practical growth lens for brands that need more than pretty posts."],
-  ["SEO", "Local SEO moves South African businesses should prioritize", "Visibility compounds when your website, content, and search signals work together."],
-  ["Branding", "Why premium visuals change buyer confidence", "Design is not decoration. It frames value before a customer reads the offer."],
-  ["Social Media", "Reels, carousels, and campaigns: choosing the right content format", "A simple guide to matching content structure to business goals."],
-  ["Business Growth", "The case for monthly retainers over once-off creative bursts", "Consistency, measurement, and iteration are where real brand momentum appears."],
-  ["Website Tips", "What every high-converting service website needs above the fold", "Clarity, proof, offer framing, and frictionless next steps."],
+  {
+    category: "Marketing",
+    title: "How Strategic Content Turns Attention Into Qualified Leads",
+    description: "A practical growth lens for brands that need more than pretty posts.",
+    keywords: "digital marketing strategy, lead generation, South African business growth",
+    readTime: "4 min read",
+    body: [
+      "Strong digital marketing is not only about posting often. It is about creating a clear path from awareness to trust, then from trust to action. For South African businesses, strategic content helps potential customers understand what you offer, why it matters, and why your brand is the right choice.",
+      "At LM Media Solutions, we see content as a business growth asset. A graphic design post should communicate value. A carousel should educate and move the buyer closer to a decision. A video should build confidence, answer objections, and make the next step feel simple.",
+      "The best-performing content usually has three things: a clear audience, a specific problem, and a direct call to action. When your content is planned around customer intent, it can generate higher-quality leads through WhatsApp inquiries, website forms, consultation bookings, and monthly retainer opportunities.",
+      "A premium brand needs premium communication. That means consistent visuals, sharp messaging, SEO-friendly website content, and campaigns designed around measurable business outcomes."
+    ],
+  },
+  {
+    category: "SEO",
+    title: "Local SEO Moves South African Businesses Should Prioritize",
+    description: "Visibility compounds when your website, content, and search signals work together.",
+    keywords: "local SEO South Africa, Pretoria SEO, SEO optimization services",
+    readTime: "5 min read",
+    body: [
+      "Local SEO helps customers find your business when they search for services near them. Whether you are a salon in Pretoria North, a corporate service provider, or a growing online brand, your search visibility can directly influence the number of qualified inquiries you receive.",
+      "The first priority is clarity. Your website should clearly mention your services, your location, and the type of clients you serve. Search engines need structured signals, and customers need immediate confidence that they are in the right place.",
+      "The next priority is useful content. Articles about website design, branding, social media management, beauty business growth, and digital marketing strategy help your business rank for relevant searches while proving expertise.",
+      "Finally, make conversion easy. SEO traffic is only valuable if visitors can take action. That is why WhatsApp buttons, contact forms, fast-loading pages, and strong service pages matter. LM Media Solutions combines SEO optimization with conversion-focused website design so visibility can become real business growth."
+    ],
+  },
+  {
+    category: "Branding",
+    title: "Why Premium Visuals Change Buyer Confidence",
+    description: "Design is not decoration. It frames value before a customer reads the offer.",
+    keywords: "premium branding, graphic design South Africa, brand identity design",
+    readTime: "3 min read",
+    body: [
+      "Your visuals speak before your sales message does. When a potential customer lands on your website or social media profile, they quickly decide whether your business feels credible, professional, and worth contacting.",
+      "Premium graphic design creates confidence. It tells customers that your business pays attention to detail, values quality, and understands presentation. This is especially important for service brands, beauty businesses, consultants, and companies competing in crowded digital spaces.",
+      "A strong brand identity uses consistent typography, colors, layouts, image direction, and messaging. When everything feels connected, your business becomes easier to recognize and easier to trust.",
+      "LM Media Solutions designs brand assets that feel modern, strategic, and conversion-focused. From social media designs to brand identity kits and packaging design, the goal is to make your offer look as valuable as it truly is."
+    ],
+  },
+  {
+    category: "Social Media",
+    title: "Reels, Carousels, And Campaigns: Choosing The Right Content Format",
+    description: "A simple guide to matching content structure to business goals.",
+    keywords: "social media management, reels editing, carousel design services",
+    readTime: "4 min read",
+    body: [
+      "Different content formats do different jobs. Reels are powerful for reach and visibility. Carousels are excellent for education, storytelling, and saving. Campaign graphics help create consistency around a launch, promotion, or monthly offer.",
+      "The right format depends on the goal. If your business needs awareness, short-form video can help you reach new audiences quickly. If your audience needs more explanation before buying, carousel designs can break down your offer in a clear and persuasive way.",
+      "For monthly growth, the best approach is usually a mix: social media posts for consistency, carousels for value, reels for reach, and strategic CTAs for inquiries.",
+      "LM Media Solutions builds content systems that connect design, video editing, content calendars, and growth strategy. The result is a social media presence that looks premium and supports real business objectives."
+    ],
+  },
+  {
+    category: "Business Growth",
+    title: "The Case For Monthly Retainers Over Once-Off Creative Bursts",
+    description: "Consistency, measurement, and iteration are where real brand momentum appears.",
+    keywords: "monthly marketing retainer, content strategy, business growth packages",
+    readTime: "4 min read",
+    body: [
+      "Once-off designs can help with a single moment, but long-term growth usually needs consistency. A monthly marketing retainer gives your business regular content, strategic direction, and ongoing optimization.",
+      "Retainers work because they create rhythm. Your audience sees your brand more often. Your messaging improves over time. Your visuals stay consistent. Your campaigns can be measured, refined, and strengthened month after month.",
+      "For businesses that want serious digital growth, a retainer can combine social media management, carousel design, video editing, SEO optimization, paid ads, and monthly strategy calls.",
+      "LM Media Solutions offers monthly retainer packages for brands that want a reliable creative and strategic partner. This is how businesses move from random posting to a professional growth system."
+    ],
+  },
+  {
+    category: "Website Tips",
+    title: "What Every High-Converting Service Website Needs Above The Fold",
+    description: "Clarity, proof, offer framing, and frictionless next steps.",
+    keywords: "website design South Africa, high converting website, WhatsApp website integration",
+    readTime: "5 min read",
+    body: [
+      "The first screen of your website has one job: make the visitor understand your value quickly and feel confident enough to continue. A high-converting service website should not make people search for what you do.",
+      "Above the fold, your website needs a strong headline, a clear service promise, a short explanation, and an obvious call to action. For many South African businesses, WhatsApp integration is essential because it reduces friction and makes inquiries feel immediate.",
+      "Your website should also communicate credibility. Premium design, strong typography, fast loading, mobile responsiveness, and clear service sections all help customers trust your business before they speak to you.",
+      "LM Media Solutions builds websites with strategy, SEO, lead capture, and conversion flow in mind. The goal is not only to look good. The goal is to turn visitors into inquiries, consultations, and long-term clients."
+    ],
+  },
 ];
 
 function cx(...items) {
@@ -250,7 +327,7 @@ function Services() {
   );
 }
 
-function PriceCard({ item }) {
+function PriceCard({ item, category }) {
   const [name, price, suffix, features, popular] = item;
   return h("article", { className: cx("poster-card rounded-lg p-6 transition duration-300", popular && "border-sky-300/70 shadow-[0_0_46px_rgba(0,123,255,.28)]") },
     popular && h("div", { className: "mb-4 inline-flex rounded-full bg-blue-500 px-3 py-1 text-xs font-black uppercase tracking-widest text-white" }, "Most Popular"),
@@ -265,7 +342,7 @@ function PriceCard({ item }) {
         h("span", null, feature)
       )
     )),
-    h("a", { href: whatsapp, className: "btn-primary mt-7 w-full px-4 py-3 text-sm" }, "Get This Package")
+    h("a", { href: whatsappForPackage(category, name, price, suffix), className: "btn-primary mt-7 w-full px-4 py-3 text-sm" }, "Get This Package")
   );
 }
 
@@ -285,7 +362,7 @@ function Pricing() {
           ),
           h("a", { href: whatsapp, className: "text-sm font-black text-sky-200" }, "Discuss custom scope →")
         ),
-        h("div", { className: "pricing-grid" }, group.packages.map((pkg) => h(PriceCard, { key: pkg[0], item: pkg })))
+        h("div", { className: "pricing-grid" }, group.packages.map((pkg) => h(PriceCard, { key: pkg[0], item: pkg, category: group.title })))
       )
     ),
     h("div", { className: "poster-card rounded-lg p-8 md:p-10" },
@@ -319,43 +396,118 @@ function About() {
   );
 }
 
-function Blog() {
-  return h(Section, { id: "blog" },
-    h(Eyebrow, null, "Insights"),
-    h("h2", { className: "max-w-4xl text-4xl font-black uppercase leading-none md:text-6xl" }, "Marketing Intelligence For Modern Businesses."),
-    h("div", { className: "mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3" },
-      posts.map(([cat, title, desc], index) =>
-        h("article", { key: title, className: cx("poster-card rounded-lg p-5 transition duration-300", index === 0 && "md:col-span-2 lg:col-span-2") },
-          h("span", { className: "rounded-full border border-blue-300/25 bg-blue-500/10 px-3 py-1 text-xs font-black uppercase tracking-widest text-sky-200" }, cat),
-          h("h3", { className: "mt-5 text-2xl font-black text-white" }, title),
-          h("p", { className: "mt-3 text-sm leading-6 text-slate-300" }, desc),
-          h("button", { className: "mt-6 text-sm font-black text-sky-200" }, "Read Article →")
+function ArticleModal({ post, onClose }) {
+  useEffect(() => {
+    if (!post) return undefined;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [post, onClose]);
+
+  if (!post) return null;
+
+  return h("div", { className: "fixed inset-0 z-[90] overflow-y-auto bg-[#02050c]/88 px-4 py-8 backdrop-blur-xl", role: "dialog", "aria-modal": "true" },
+    h("div", { className: "mx-auto max-w-3xl" },
+      h("article", { className: "poster-card rounded-lg p-6 md:p-9" },
+        h("div", { className: "mb-6 flex items-start justify-between gap-4" },
+          h("div", null,
+            h("span", { className: "rounded-full border border-blue-300/25 bg-blue-500/10 px-3 py-1 text-xs font-black uppercase tracking-widest text-sky-200" }, post.category),
+            h("p", { className: "mt-4 text-xs font-black uppercase tracking-[0.24em] text-slate-400" }, `${post.readTime} | ${post.keywords}`),
+            h("h2", { className: "mt-4 text-3xl font-black uppercase leading-tight text-white md:text-5xl" }, post.title)
+          ),
+          h("button", { onClick: onClose, className: "icon-btn h-11 w-11 shrink-0 border border-blue-300/25 bg-white/5 text-xl", "aria-label": "Close article" }, "×")
+        ),
+        h("div", { className: "grid gap-5 text-base leading-8 text-slate-200" },
+          post.body.map((paragraph) => h("p", { key: paragraph }, paragraph))
+        ),
+        h("div", { className: "mt-8 flex flex-wrap gap-3 border-t border-blue-300/15 pt-6" },
+          h(CTAButton, { href: whatsapp }, "Book Free Consultation"),
+          h(CTAButton, { href: "mailto:info@lmmediasolutions.co.za?subject=Website%20Article%20Inquiry", secondary: true }, "Email LM Media")
         )
       )
     )
   );
 }
 
+function Blog() {
+  const [activePost, setActivePost] = useState(null);
+
+  return h(Section, { id: "blog" },
+    h(Eyebrow, null, "Articles"),
+    h("h2", { className: "max-w-4xl text-4xl font-black uppercase leading-none md:text-6xl" }, "Marketing Intelligence For Modern Businesses."),
+    h("p", { className: "mt-5 max-w-2xl text-slate-300" }, "Read practical articles on digital marketing, SEO, branding, website design, social media management, and business growth for South African brands."),
+    h("div", { className: "mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3" },
+      posts.map((post, index) =>
+        h("article", { key: post.title, className: cx("poster-card rounded-lg p-5 transition duration-300", index === 0 && "md:col-span-2 lg:col-span-2") },
+          h("div", { className: "flex flex-wrap items-center gap-2" },
+            h("span", { className: "rounded-full border border-blue-300/25 bg-blue-500/10 px-3 py-1 text-xs font-black uppercase tracking-widest text-sky-200" }, post.category),
+            h("span", { className: "text-xs font-bold uppercase tracking-widest text-slate-400" }, post.readTime)
+          ),
+          h("h3", { className: "mt-5 text-2xl font-black text-white" }, post.title),
+          h("p", { className: "mt-3 text-sm leading-6 text-slate-300" }, post.description),
+          h("p", { className: "mt-4 text-xs font-bold uppercase tracking-[0.18em] text-sky-200/80" }, post.keywords),
+          h("button", { onClick: () => setActivePost(post), className: "mt-6 text-sm font-black text-sky-200" }, "Read Article →")
+        )
+      )
+    ),
+    h(ArticleModal, { post: activePost, onClose: () => setActivePost(null) })
+  );
+}
+
 function Contact() {
+  const sendInquiry = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const name = data.get("name") || "";
+    const business = data.get("business") || "";
+    const email = data.get("email") || "";
+    const phoneNumber = data.get("phone") || "";
+    const service = data.get("service") || "";
+    const message = data.get("message") || "";
+    const subject = `Website Inquiry - ${service || "LM Media Solutions"}`;
+    const body = [
+      "Hi LM Media Solutions,",
+      "",
+      "I would like to send an inquiry from the website.",
+      "",
+      `Full name: ${name}`,
+      `Business name: ${business}`,
+      `Email address: ${email}`,
+      `Phone number: ${phoneNumber}`,
+      `Interested service: ${service}`,
+      "",
+      "Message:",
+      message,
+    ].join("\n");
+
+    window.location.href = `mailto:info@lmmediasolutions.co.za?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   return h(Section, { id: "contact" },
     h(Eyebrow, null, "Contact"),
     h("div", { className: "grid gap-6 lg:grid-cols-[1fr_.85fr]" },
       h("div", null,
         h("h2", { className: "text-4xl font-black uppercase leading-none md:text-6xl" }, "Let’s Build Your Next Growth Move."),
         h("p", { className: "mt-5 max-w-2xl text-slate-300" }, "Send your goals, preferred package, and timeline. LM Media Solutions will respond with the best next step for your business."),
-        h("form", { className: "mt-8 grid gap-4", onSubmit: (e) => e.preventDefault() },
+        h("form", { className: "mt-8 grid gap-4", onSubmit: sendInquiry },
           h("div", { className: "grid gap-4 md:grid-cols-2" },
-            h("input", { className: "form-field", placeholder: "Full name", "aria-label": "Full name" }),
-            h("input", { className: "form-field", placeholder: "Business name", "aria-label": "Business name" })
+            h("input", { className: "form-field", name: "name", placeholder: "Full name", "aria-label": "Full name", required: true }),
+            h("input", { className: "form-field", name: "business", placeholder: "Business name", "aria-label": "Business name" })
           ),
           h("div", { className: "grid gap-4 md:grid-cols-2" },
-            h("input", { className: "form-field", placeholder: "Email address", type: "email", "aria-label": "Email address" }),
-            h("input", { className: "form-field", placeholder: "Phone number", type: "tel", "aria-label": "Phone number" })
+            h("input", { className: "form-field", name: "email", placeholder: "Email address", type: "email", "aria-label": "Email address", required: true }),
+            h("input", { className: "form-field", name: "phone", placeholder: "Phone number", type: "tel", "aria-label": "Phone number" })
           ),
-          h("select", { className: "form-field", "aria-label": "Interested service" },
+          h("select", { className: "form-field", name: "service", "aria-label": "Interested service" },
             ["Website Design", "Social Media Management", "Graphic Design", "Video Editing", "SEO", "Monthly Retainer", "Beauty Growth Package", "Custom Strategy"].map((x) => h("option", { key: x }, x))
           ),
-          h("textarea", { className: "form-field min-h-36", placeholder: "Tell us what you want to grow.", "aria-label": "Message" }),
+          h("textarea", { className: "form-field min-h-36", name: "message", placeholder: "Tell us what you want to grow.", "aria-label": "Message", required: true }),
           h("div", { className: "mobile-stack flex flex-wrap gap-3" },
             h("button", { className: "btn-primary px-5 py-3 text-sm", type: "submit" }, "Send Inquiry"),
             h(CTAButton, { href: whatsapp, secondary: true }, "Chat On WhatsApp")
@@ -372,8 +524,8 @@ function Contact() {
         ),
         h("div", { className: "mt-6 overflow-hidden rounded-lg border border-blue-300/20" },
           h("iframe", {
-            title: "South Africa map",
-            src: "https://www.google.com/maps?q=South%20Africa&output=embed",
+            title: "Pretoria North, South Africa map",
+            src: "https://www.google.com/maps?q=Pretoria%20North%2C%20South%20Africa&output=embed",
             className: "h-64 w-full",
             loading: "lazy",
           })
@@ -429,7 +581,7 @@ function Page({ page, setPage }) {
   if (page === "About") return h(React.Fragment, null, h("div", { className: "pt-24" }), h(About), h(Services), h(Contact));
   if (page === "Services") return h(React.Fragment, null, h("div", { className: "pt-24" }), h(Services), h(Pricing), h(Contact));
   if (page === "Pricing") return h(React.Fragment, null, h("div", { className: "pt-24" }), h(Pricing), h(Contact));
-  if (page === "Blog") return h(React.Fragment, null, h("div", { className: "pt-24" }), h(Blog), h(Contact));
+  if (page === "Articles") return h(React.Fragment, null, h("div", { className: "pt-24" }), h(Blog), h(Contact));
   return h(React.Fragment, null, h("div", { className: "pt-24" }), h(Contact));
 }
 
