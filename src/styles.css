@@ -303,7 +303,7 @@ body { background-image:none!important; }
 .service-number { color:#5D9BD5; font-size:12px; letter-spacing:.08em; }
 .service-row h3 { margin:0; font-family:"DM Serif Display",Georgia,serif; font-size:30px; font-weight:400; }
 .service-row ul { display:flex; flex-wrap:wrap; gap:7px 16px; padding:0; margin:0; list-style:none; color:#60666b; font-size:13px; }
-.service-row>a { color:#0B4F8A; font-size:22px; text-align:right; }
+.service-row>a { color:#0B4F8A; font-size:12px; font-weight:700; text-align:center; white-space:nowrap; }
 .about-section { display:grid!important; grid-template-columns:1.03fr .97fr; align-items:center; gap:9%; }
 .about-image { position:relative; height:590px; margin:0; }
 .about-image::after { content:""; position:absolute; inset:18px -18px -18px 18px; border:1px solid #5D9BD5; pointer-events:none; }
