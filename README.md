@@ -1,22 +1,18 @@
 # LM Media Solutions Website
 
-A premium, poster-inspired React website for LM Media Solutions.
+A no-build React website for LM Media Solutions, designed as an editorial creative studio with the supplied brand photography and official logo.
 
 ## Run
 
-This project is intentionally no-build. Start the local server with:
+Start the local server with Node.js:
 
 ```powershell
-& "C:\Users\HloniMaishoane\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe" server.mjs
+node server.mjs
 ```
 
-Then open:
+Then open `http://127.0.0.1:4173`.
 
-```text
-http://127.0.0.1:4173
-```
-
-It uses React, TailwindCSS, and Framer Motion from CDN links, with custom CSS for the neon luxury brand system. The app can also be hosted as static files because all routing is handled client-side.
+The site uses React and TailwindCSS from CDN links, with custom CSS, existing package pricing and articles, contact and WhatsApp actions, responsive layouts, and reduced-motion-aware scroll reveals. Photography and the logo live in `assets/`.
 
 ## Contact Details
 

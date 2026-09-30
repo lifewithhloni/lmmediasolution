@@ -2,7 +2,7 @@ const { createElement: h, useEffect, useMemo, useState } = React;
 const motionApi = window.Motion || window.framerMotion || {};
 const motion = motionApi.motion || new Proxy({}, { get: (_, tag) => tag });
 
-const navItems = ["Home", "About", "Services", "Pricing", "Articles", "Contact"];
+const navItems = ["Home", "Work", "Services", "About", "Contact"];
 const phone = "0726559998";
 const whatsapp = `https://wa.me/27${phone.slice(1)}?text=${encodeURIComponent("Hi LM Media Solutions, I would like to book a free consultation.")}`;
 
@@ -218,114 +218,12 @@ function AnimatedCounter({ value, suffix = "" }) {
   return h(React.Fragment, null, count, suffix);
 }
 
-function Navbar({ page, setPage }) {
-  const [open, setOpen] = useState(false);
-  const [light, setLight] = useState(false);
-  useEffect(() => {
-    document.documentElement.classList.toggle("light", light);
-  }, [light]);
+function Navbar({ page, setPage }) { const [open,setOpen]=useState(false); const links=[["Home","top"],["Work","work"],["Services","services"],["About","about"],["Contact","contact"]]; return h("header",{className:"site-header"},h("nav",{className:"shell nav-inner","aria-label":"Main navigation"},h("a",{href:"#top",className:"brand-mark","aria-label":"LM Media Solutions home"},h("img",{src:"/assets/lm-media-solutions-logo.png",alt:"LM Media Solutions",className:"brand-logo"})),h("button",{className:"menu-toggle",onClick:()=>setOpen(!open),"aria-expanded":open,"aria-label":"Toggle navigation"},open?"Close":"Menu"),h("div",{className:cx("nav-links",open&&"nav-open")},links.map(([label,id])=>h("a",{key:id,href:"#"+id,onClick:()=>setOpen(false)},label))),h("a",{href:whatsapp,className:"btn-primary nav-cta"},"Start a Project"))) }
 
-  const link = (item) =>
-    h("button", {
-      key: item,
-      onClick: () => {
-        setPage(item);
-        setOpen(false);
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      },
-      className: cx("rounded-md px-3 py-2 text-sm font-bold transition", page === item ? "bg-blue-500/18 text-white shadow-[0_0_24px_rgba(0,123,255,.22)]" : "text-slate-300 hover:text-white"),
-    }, item);
+function Hero() { return h("section",{className:"hero-section shell",id:"top"},h("div",{className:"hero-copy reveal"},h("p",{className:"eyebrow"},"Independent creative studio · South Africa"),h("h1",{className:"hero-title"},"The design partner",h("br"),"for growing ",h("em",null,"businesses.")),h("p",{className:"hero-intro"},"We help ambitious businesses build stronger brands, digital experiences and marketing content through thoughtful design."),h("div",{className:"hero-actions"},h("a",{href:"#work",className:"btn-primary"},"View our work"),h("a",{href:whatsapp,className:"text-link"},"Start a project ",h("span",null,"↗"))),h("div",{className:"hero-index"},h("span",null,"LM MEDIA SOLUTIONS"),h("span",null,"DESIGN · DIGITAL · CONTENT"))),h("figure",{className:"hero-image reveal"},h("img",{src:"/assets/pexels-mikael-blomkvist-6476257.jpg",alt:"Creative team collaborating around a table in a design studio",fetchPriority:"high"}),h("figcaption",null,"Good work starts with good collaboration."))) }
 
-  return h("header", { className: "fixed inset-x-0 top-0 z-50 border-b border-blue-400/15 bg-[#050814]/78 backdrop-blur-xl" },
-    h("nav", { className: "shell flex min-h-[74px] items-center justify-between gap-4" },
-      h("button", { onClick: () => setPage("Home"), className: "flex items-center gap-3 text-left" },
-        h("span", { className: "grid h-11 w-11 place-items-center rounded-lg bg-blue-500 text-lg font-black text-white shadow-[0_0_28px_rgba(0,123,255,.55)]" }, "LM"),
-        h("span", null,
-          h("span", { className: "block text-sm font-black uppercase tracking-[0.22em] text-white" }, "LM Media"),
-          h("span", { className: "block text-xs font-semibold text-sky-200" }, "Strategize. Optimize. Grow.")
-        )
-      ),
-      h("div", { className: "hidden items-center gap-1 lg:flex" }, navItems.map(link)),
-      h("div", { className: "hidden items-center gap-2 lg:flex" },
-        h("button", { onClick: () => setLight(!light), className: "icon-btn h-11 w-11 border border-blue-300/25 bg-white/5 text-sm", title: "Toggle theme" }, light ? "◐" : "●"),
-        h(CTAButton, { href: whatsapp }, "Book Consultation")
-      ),
-      h("button", { onClick: () => setOpen(!open), className: "icon-btn h-11 w-11 border border-blue-300/25 bg-white/5 lg:hidden", "aria-label": "Open menu" }, open ? "×" : "☰")
-    ),
-    open && h("div", { className: "shell mb-4 grid gap-2 rounded-lg border border-blue-300/20 bg-[#07101f] p-3 lg:hidden" }, navItems.map(link), h(CTAButton, { href: whatsapp }, "Book Consultation"))
-  );
-}
-
-function Hero({ setPage }) {
-  return h("section", { className: "relative min-h-screen overflow-hidden pt-28" },
-    h("div", { className: "noise" }),
-    h("div", { className: "shell grid min-h-[calc(100vh-112px)] items-center gap-10 py-12 lg:grid-cols-[1.03fr_.97fr]" },
-      h(motion.div, { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.7 } },
-        h(Eyebrow, null, "South African Premium Growth Agency"),
-        h("h1", { className: "hero-title max-w-4xl text-6xl font-black uppercase leading-[0.88] tracking-normal md:text-8xl" },
-          "Premium Digital ",
-          h("span", { className: "blue-gradient" }, "Solutions"),
-          " For Modern Businesses"
-        ),
-        h("p", { className: "mt-7 max-w-2xl text-lg font-medium leading-8 text-slate-300" },
-          "LM Media Solutions helps businesses grow through strategic content, websites, branding, SEO, video editing, and digital marketing."
-        ),
-        h("div", { className: "mobile-stack mt-8 flex flex-wrap gap-3" },
-          h(CTAButton, { href: whatsapp }, "Book Free Consultation"),
-          h("button", { onClick: () => setPage("Pricing"), className: "btn-secondary px-5 py-3 text-sm" }, "View Packages")
-        ),
-        h("div", { className: "mt-10 grid max-w-2xl grid-cols-3 gap-3" },
-          [[10, "+", "Core Services"], [24, "/7", "WhatsApp Leads"], [100, "%", "Growth Focus"]].map(([n, s, l]) =>
-            h("div", { key: l, className: "glass rounded-lg p-4" },
-              h("div", { className: "text-2xl font-black text-white md:text-3xl" }, h(AnimatedCounter, { value: n, suffix: s })),
-              h("div", { className: "mt-1 text-xs font-bold uppercase tracking-widest text-sky-200" }, l)
-            )
-          )
-        )
-      ),
-      h("div", { className: "relative min-h-[540px]" },
-        h("div", { className: "poster-card absolute left-2 top-8 w-[82%] rounded-lg p-5 md:left-10" },
-          h("div", { className: "mb-5 flex items-center justify-between" },
-            h("span", { className: "text-xs font-black uppercase tracking-[0.25em] text-sky-200" }, "Growth Dashboard"),
-            h("span", { className: "rounded-full bg-blue-500 px-3 py-1 text-xs font-black text-white" }, "LIVE")
-          ),
-          h("div", { className: "grid grid-cols-3 gap-3" },
-            [["Leads", "+62%"], ["Reach", "218K"], ["SEO", "Top 3"]].map(([a, b]) => h("div", { key: a, className: "rounded-lg border border-blue-300/20 bg-black/20 p-3" }, h("p", { className: "text-xs text-slate-400" }, a), h("strong", { className: "text-xl text-white" }, b)))
-          ),
-          h("div", { className: "mt-5 h-32 rounded-lg border border-blue-300/20 bg-[linear-gradient(135deg,rgba(0,123,255,.28),rgba(255,255,255,.04))] p-4" },
-            h("div", { className: "h-full rounded-md bg-[repeating-linear-gradient(90deg,rgba(255,255,255,.1)_0_1px,transparent_1px_38px)]" })
-          )
-        ),
-        h("div", { className: "orbital right-0 top-2 w-48 rounded-lg p-4" }, h("div", { className: "text-xs font-black uppercase text-sky-200" }, "Social Launch"), h("div", { className: "mt-2 text-3xl font-black" }, "R8.5K"), h("p", { className: "mt-1 text-sm text-slate-300" }, "Growth Package")),
-        h("div", { className: "orbital bottom-16 left-0 w-56 rounded-lg p-4" }, h("div", { className: "text-xs font-black uppercase text-sky-200" }, "Brand Identity"), h("div", { className: "mt-2 h-3 rounded bg-blue-400" }), h("div", { className: "mt-3 h-3 w-2/3 rounded bg-white/35" })),
-        h("div", { className: "orbital bottom-4 right-8 w-64 rounded-lg p-4" }, h("div", { className: "text-xs font-black uppercase text-sky-200" }, "Website Funnel"), h("p", { className: "mt-2 text-sm text-slate-300" }, "SEO, forms, WhatsApp, CRM-ready conversion path."))
-      )
-    )
-  );
-}
-
-function Services() {
-  return h(Section, { id: "services" },
-    h(Eyebrow, null, "Services"),
-    h("div", { className: "mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end" },
-      h("h2", { className: "max-w-3xl text-4xl font-black uppercase leading-none md:text-6xl" }, "Built Like A Poster. Engineered Like A Growth System."),
-      h("p", { className: "max-w-md text-slate-300" }, "Each offer is packaged to look premium, sell clearly, and give prospects an obvious next move.")
-    ),
-    h("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-3" },
-      services.map(([title, desc, icon]) =>
-        h("article", { key: title, className: "poster-card rounded-lg p-5 transition duration-300" },
-          h("div", { className: "mb-5 flex items-center justify-between" },
-            h("span", { className: "grid h-12 w-12 place-items-center rounded-lg border border-blue-300/30 bg-blue-500/10 text-2xl font-black text-sky-200" }, icon),
-            h("span", { className: "text-xs font-black uppercase tracking-[0.22em] text-blue-200" }, "LM")
-          ),
-          h("h3", { className: "text-2xl font-black text-white" }, title),
-          h("p", { className: "mt-3 min-h-20 text-sm leading-6 text-slate-300" }, desc),
-          h("a", { href: whatsapp, className: "mt-5 inline-flex text-sm font-black text-sky-200" }, "Request Quote →")
-        )
-      )
-    )
-  );
-}
+function Work() { const items=[["/assets/pexels-canvastudio-3194521.jpg","Brand & graphic design","Design team sharing ideas around a table"],["/assets/pexels-rdne-7947999.jpg","Digital design","Reviewing website analytics on a laptop"],["/assets/pexels-kindelmedia-7651801.jpg","Content & social","Planning marketing materials together"],["/assets/pexels-thirdman-7181178.jpg","Brand & graphic design","Team reviewing colour and design references"],["/assets/pexels-yankrukov-7698812.jpg","Growth","Colleagues reviewing business data"]]; return h(Section,{id:"work",className:"work-section"},h("div",{className:"section-heading reveal"},h("p",{className:"eyebrow"},"Selected imagery"),h("h2",null,"Thoughtful work,",h("br"),h("em",null,"made together.")),h("p",{className:"section-note"},"A glimpse into the people, process and ideas behind better brand and digital experiences.")),h("div",{className:"work-grid"},items.map(([src,category,alt],i)=>h("figure",{key:src,className:cx("work-image reveal",i===0&&"work-image-tall",i===3&&"work-image-wide")},h("img",{src,alt,loading:"lazy"}),h("figcaption",null,h("span",null,"0"+(i+1)),h("span",null,category))))),h("a",{href:whatsapp,className:"text-link work-link"},"Discuss a project ",h("span",null,"↗"))) }
+function Services() { const groups=[["01","Brand & Graphic Design",["Graphic Design","Carousel Design","Presentation Design"]],["02","Digital Design",["Website Design","UX/UI Design"]],["03","Content & Social",["Video Editing","Social Media Management"]],["04","Growth",["SEO","Business Growth Packages"]]]; return h(Section,{id:"services",className:"services-section"},h("div",{className:"section-heading reveal"},h("p",{className:"eyebrow"},"What we do"),h("h2",null,"Clear thinking.",h("br"),h("em",null,"Considered design.")),h("p",{className:"section-note"},"A connected set of creative services, shaped around what your business needs next.")),h("div",{className:"service-list"},groups.map(([num,title,entries])=>h("article",{key:title,className:"service-row reveal"},h("span",{className:"service-number"},num),h("h3",null,title),h("ul",null,entries.map(item=>h("li",{key:item},item))),h("a",{href:whatsapp,"aria-label":"Ask about "+title},"↗"))))) }
 
 function PriceCard({ item, category }) {
   const [name, price, suffix, features, popular] = item;
@@ -351,7 +249,7 @@ function Pricing() {
     h("div", null,
       h(Eyebrow, null, "Pricing"),
       h("h2", { className: "max-w-4xl text-4xl font-black uppercase leading-none md:text-6xl" }, "Premium Packages With Clear, Confident Offers."),
-      h("p", { className: "mt-5 max-w-2xl text-slate-300" }, "Poster-inspired pricing sections with bold value hierarchy, glowing cards, and direct WhatsApp conversion paths.")
+      h("p", { className: "mt-5 max-w-2xl text-slate-300" }, "Clear, straightforward packages for common creative needs. We can also shape a scope around your business.")
     ),
     pricingGroups.map((group) =>
       h("div", { key: group.title, className: "scroll-mt-28" },
@@ -378,23 +276,8 @@ function Pricing() {
   );
 }
 
-function About() {
-  return h(Section, { id: "about" },
-    h(Eyebrow, null, "About LM Media Solutions"),
-    h("div", { className: "grid gap-8 lg:grid-cols-[.9fr_1.1fr]" },
-      h("div", null,
-        h("h2", { className: "text-4xl font-black uppercase leading-none md:text-6xl" }, "Strategic Creative Direction For Businesses That Want Momentum."),
-        h("p", { className: "mt-6 text-lg leading-8 text-slate-300" }, "LM Media Solutions blends brand strategy, premium design, content execution, SEO, and conversion-focused websites into one growth partner for South African businesses."),
-        h("p", { className: "mt-4 text-slate-300" }, "The mission is simple: make your business look credible, communicate clearly, and convert attention into real inquiries.")
-      ),
-      h("div", { className: "grid gap-4 md:grid-cols-2" },
-        [["Mission", "Build digital assets that help businesses attract better leads and grow with confidence."], ["Vision", "Become a trusted premium growth partner for ambitious South African brands."], ["Positioning", "Corporate luxury, strategic clarity, measurable execution, and premium presentation."], ["Why Choose Us", "Design quality, offer structure, conversion thinking, and long-term growth support in one place."]].map(([title, copy]) =>
-          h("div", { key: title, className: "poster-card rounded-lg p-6" }, h("h3", { className: "text-xl font-black text-white" }, title), h("p", { className: "mt-3 text-sm leading-6 text-slate-300" }, copy))
-        )
-      )
-    )
-  );
-}
+function About() { return h(Section,{id:"about",className:"about-section"},h("div",{className:"about-image reveal"},h("img",{src:"/assets/pexels-canvastudio-3194519.jpg",alt:"Creative team sharing ideas around a table",loading:"lazy"}),h("span",null,"A more thoughtful way to show up.")),h("div",{className:"about-copy reveal"},h("p",{className:"eyebrow"},"A creative partner"),h("h2",null,"Design that moves business ",h("em",null,"forward.")),h("p",{className:"about-lede"},"LM Media Solutions brings design, digital and marketing together to help businesses communicate clearly and present themselves professionally."),h("p",null,"We work alongside growing businesses to shape stronger identities, useful digital experiences and content with a clear purpose."),h("a",{href:whatsapp,className:"text-link"},"Let’s work together ",h("span",null,"↗")))) }
+function Process() { const steps=[["01","Discover","We learn about your business, audience and the change you want to make."],["02","Design","We develop a clear visual direction and thoughtful creative."],["03","Build","We turn the approved direction into polished, practical deliverables."],["04","Grow","We keep improving your brand and digital presence as you move forward."]]; return h(Section,{id:"process",className:"process-section"},h("p",{className:"eyebrow"},"How we work"),h("h2",{className:"reveal"},"Good work is a ",h("em",null,"process.")),h("div",{className:"process-grid"},steps.map(([num,title,copy])=>h("article",{className:"process-step reveal",key:title},h("span",null,num),h("h3",null,title),h("p",null,copy))))) }
 
 function ArticleModal({ post, onClose }) {
   useEffect(() => {
@@ -545,17 +428,7 @@ function Marquee() {
   );
 }
 
-function Footer({ setPage }) {
-  return h("footer", { className: "border-t border-blue-300/15 py-10" },
-    h("div", { className: "shell flex flex-col justify-between gap-6 md:flex-row md:items-center" },
-      h("div", null,
-        h("div", { className: "text-lg font-black uppercase tracking-[0.18em] text-white" }, "LM Media Solutions"),
-        h("p", { className: "mt-2 text-sm text-slate-400" }, "Strategize. Optimize. Grow.")
-      ),
-      h("div", { className: "flex flex-wrap gap-2" }, navItems.map((item) => h("button", { key: item, onClick: () => setPage(item), className: "rounded px-3 py-2 text-sm font-bold text-slate-300 hover:text-white" }, item)))
-    )
-  );
-}
+function Footer({ setPage }) { return h("footer",{className:"site-footer"},h("div",{className:"shell footer-top"},h("a",{href:"#top"},h("img",{src:"/assets/lm-media-solutions-logo.png",alt:"LM Media Solutions",className:"footer-logo"})),h("p",null,"The Design Partner for Growing Businesses."),h("div",{className:"footer-links"},[["Work","work"],["Services","services"],["About","about"],["Pricing","pricing"],["Articles","blog"],["Contact","contact"]].map(([label,id])=>h("a",{key:id,href:"#"+id},label)))),h("div",{className:"shell footer-bottom"},h("span",null,"© LM Media Solutions"),h("a",{href:"mailto:info@lmmediasolutions.co.za"},"info@lmmediasolutions.co.za"))) }
 
 function FloatingCTA() {
   return h("div", { className: "fixed bottom-5 right-5 z-50 flex flex-col gap-3" },
@@ -564,26 +437,9 @@ function FloatingCTA() {
   );
 }
 
-function HomePage({ setPage }) {
-  return h(React.Fragment, null,
-    h(Hero, { setPage }),
-    h(Marquee),
-    h(Services),
-    h(About),
-    h(Pricing),
-    h(Blog),
-    h(Contact)
-  );
-}
+function HomePage({ setPage }) { return h(React.Fragment,null,h(Hero),h(Work),h(Services),h(About),h(Process),h(Pricing),h(Blog),h(Contact)) }
 
-function Page({ page, setPage }) {
-  if (page === "Home") return h(HomePage, { setPage });
-  if (page === "About") return h(React.Fragment, null, h("div", { className: "pt-24" }), h(About), h(Services), h(Contact));
-  if (page === "Services") return h(React.Fragment, null, h("div", { className: "pt-24" }), h(Services), h(Pricing), h(Contact));
-  if (page === "Pricing") return h(React.Fragment, null, h("div", { className: "pt-24" }), h(Pricing), h(Contact));
-  if (page === "Articles") return h(React.Fragment, null, h("div", { className: "pt-24" }), h(Blog), h(Contact));
-  return h(React.Fragment, null, h("div", { className: "pt-24" }), h(Contact));
-}
+function Page({ page, setPage }) { return h(HomePage,{setPage}) }
 
 function App() {
   const [page, setPage] = useState("Home");
@@ -605,15 +461,12 @@ function App() {
   }, [page]);
 
   useEffect(() => {
-    document.title = page === "Home" ? "LM Media Solutions | Strategize. Optimize. Grow." : `${page} | LM Media Solutions`;
+    document.title = page === "Home" ? "LM Media Solutions | The Design Partner for Growing Businesses" : `${page} | LM Media Solutions`;
   }, [page]);
 
   return h("div", { id: "top" },
     loading && h("div", { className: "fixed inset-0 z-[80] grid place-items-center bg-[#03050c]" },
-      h("div", { className: "text-center" },
-        h("div", { className: "mx-auto grid h-20 w-20 place-items-center rounded-lg bg-blue-500 text-2xl font-black text-white shadow-[0_0_48px_rgba(0,123,255,.7)]" }, "LM"),
-        h("div", { className: "mt-5 text-xs font-black uppercase tracking-[0.35em] text-sky-200" }, "Loading Growth System")
-      )
+      h("div",{className:"text-center"},h("img",{src:"/assets/lm-media-solutions-logo.png",alt:"LM Media Solutions",className:"loading-logo"}))
     ),
     h(Navbar, { page, setPage }),
     h(Page, { page, setPage }),
