@@ -426,7 +426,7 @@ function FloatingCTA() {
   );
 }
 
-function HomePage({ setPage }) { return h(React.Fragment,null,h(Hero),h(Marquee),h(Services),h(Marquee),h(About),h(Process),h(Marquee),h(Pricing),h(Blog),h(Contact)) }
+function HomePage({ setPage }) { return h(React.Fragment,null,h(Hero),h(Marquee),h(Services),h(Marquee),h(About),h(Process),h(Pricing),h(Blog),h(Contact)) }
 
 function Page({ page, setPage }) { return h(HomePage,{setPage}) }
 
