@@ -192,7 +192,7 @@ function AnimatedCounter({ value, suffix = "" }) {
   return h(React.Fragment, null, count, suffix);
 }
 
-function Navbar({ page, setPage }) { const [open,setOpen]=useState(false); const links=[["Home","top"],["Services","services"],["About","about"],["Contact","contact"]]; return h("header",{className:"site-header"},h("nav",{className:"shell nav-inner","aria-label":"Main navigation"},h("a",{href:"#top",className:"brand-mark","aria-label":"LM Media Solutions home"},h("img",{src:"/assets/lm-media-solutions-logo.png",alt:"LM Media Solutions",className:"brand-logo"})),h("button",{className:"menu-toggle",onClick:()=>setOpen(!open),"aria-expanded":open,"aria-label":"Toggle navigation"},open?"Close":"Menu"),h("div",{className:cx("nav-links",open&&"nav-open")},links.map(([label,id])=>h("a",{key:id,href:"#"+id,onClick:()=>setOpen(false)},label))),h("a",{href:whatsapp,className:"btn-primary nav-cta"},"Start a Project"))) }
+function Navbar({ page, setPage }) { const [open,setOpen]=useState(false); const links=[["Home","top"],["Services","services"],["About","about"],["Pricing","pricing"],["Blogs","blogs"],["Contact","contact"]]; const navigate=(label,id)=>{setOpen(false); if(label==="Blogs"){setPage("Blogs");window.scrollTo({top:0,behavior:"smooth"});return;} if(page!=="Home")setPage("Home"); window.setTimeout(()=>{const target=document.getElementById(id); if(target)target.scrollIntoView({behavior:"smooth",block:"start"});},0);}; return h("header",{className:"site-header"},h("nav",{className:"shell nav-inner","aria-label":"Main navigation"},h("a",{href:"#top",className:"brand-mark","aria-label":"LM Media Solutions home",onClick:(event)=>{event.preventDefault();setPage("Home");window.scrollTo({top:0,behavior:"smooth"});}},h("img",{src:"/assets/lm-media-solutions-logo.png",alt:"LM Media Solutions",className:"brand-logo"})),h("button",{className:"menu-toggle",onClick:()=>setOpen(!open),"aria-expanded":open,"aria-label":"Toggle navigation"},open?"Close":"Menu"),h("div",{className:cx("nav-links",open&&"nav-open")},links.map(([label,id])=>h("a",{key:id,href:label==="Blogs"?"#blogs":"#"+id,onClick:(event)=>{event.preventDefault();navigate(label,id);}},label))),h("a",{href:whatsapp,className:"btn-primary nav-cta"},"Start a Project"))) }
 
 function Hero() { return h("section",{className:"hero-section shell",id:"top"},h("div",{className:"hero-copy reveal"},h("p",{className:"eyebrow"},"Independent creative studio · South Africa"),h("h1",{className:"hero-title"},"The design partner",h("br"),"for growing ",h("em",null,"businesses.")),h("p",{className:"hero-intro"},"We help ambitious businesses build stronger brands, digital experiences and marketing content through thoughtful design."),h("div",{className:"hero-actions"},h("a",{href:"#services",className:"btn-primary"},"Explore our services"),h("a",{href:whatsapp,className:"text-link"},"Start a project ",h("span",null,"↗"))),h("div",{className:"hero-index"},h("span",null,"LM MEDIA SOLUTIONS"),h("span",null,"DESIGN · DIGITAL · CONTENT"))),h("figure",{className:"hero-image reveal"},h("img",{src:"/assets/pexels-mikael-blomkvist-6476257.jpg",alt:"Creative team collaborating around a table in a design studio",fetchPriority:"high"}),h("figcaption",null,"Good work starts with good collaboration."))) }
 
@@ -228,8 +228,8 @@ function Pricing() {
       h("div", { key: group.title, className: "scroll-mt-28" },
         h("div", { className: "mb-5 flex flex-col justify-between gap-2 md:flex-row md:items-end" },
           h("div", null,
-            h("p", { className: "text-xs font-black uppercase tracking-[0.24em] text-sky-200" }, group.kicker),
-            h("h3", { className: "mt-2 text-3xl font-black uppercase text-white md:text-4xl" }, group.title)
+            h("p", { className: "pricing-kicker text-xs font-black uppercase tracking-[0.24em]" }, group.kicker),
+            h("h3", { className: "pricing-group-title mt-2 text-3xl font-black uppercase md:text-4xl" }, group.title)
           ),
           h("a", { href: whatsapp, className: "text-sm font-black text-sky-200" }, "Discuss custom scope →")
         ),
@@ -291,28 +291,30 @@ function ArticleModal({ post, onClose }) {
   );
 }
 
-function Blog() {
-  const [activePost, setActivePost] = useState(null);
-
-  return h(Section, { id: "blog" },
-    h(Eyebrow, null, "Articles"),
-    h("h2", { className: "max-w-4xl text-4xl font-black uppercase leading-none md:text-6xl" }, "Marketing Intelligence For Modern Businesses."),
-    h("p", { className: "mt-5 max-w-2xl text-slate-300" }, "Read practical articles on digital marketing, SEO, branding, website design, social media management, and business growth for South African brands."),
+function Blog({ activePost, setActivePost }) {
+  if (activePost) return h("main", { className: "blog-page shell", id: "blogs" },
+    h("button", { type: "button", className: "blog-back", onClick: () => { setActivePost(null); window.scrollTo({ top: 0, behavior: "smooth" }); } }, "← Back to all blogs"),
+    h("article", { className: "blog-article" },
+      h("div", { className: "blog-meta" }, h("span", { className: "blog-meta-pill" }, activePost.category), h("span", null, `${activePost.readTime} read`)),
+      h("h1", null, activePost.title),
+      h("p", { className: "blog-keywords" }, activePost.keywords),
+      h("div", { className: "blog-body" }, activePost.body.map((paragraph, index) => h("p", { key: `${index}-${paragraph.slice(0,24)}` }, paragraph))),
+      h("div", { className: "blog-article-actions" }, h(CTAButton, { href: whatsapp }, "Book Free Consultation"), h("button", { type: "button", className: "blog-back blog-back-bottom", onClick: () => { setActivePost(null); window.scrollTo({ top: 0, behavior: "smooth" }); } }, "← Back to all blogs"))
+    )
+  );
+  return h(Section, { id: "blogs", className: "blogs-page" },
+    h(Eyebrow, null, "Blogs"),
+    h("h1", { className: "max-w-4xl text-4xl font-black uppercase leading-none md:text-6xl" }, "Ideas for growing businesses."),
+    h("p", { className: "mt-5 max-w-2xl text-slate-300" }, "Explore practical articles on digital marketing, SEO, branding, website design, social media, and business growth."),
     h("div", { className: "mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3" },
-      posts.map((post, index) =>
-        h("article", { key: post.title, className: cx("poster-card rounded-lg p-5 transition duration-300", index === 0 && "md:col-span-2 lg:col-span-2") },
-          h("div", { className: "flex flex-wrap items-center gap-2" },
-            h("span", { className: "rounded-full border border-blue-300/25 bg-blue-500/10 px-3 py-1 text-xs font-black uppercase tracking-widest text-sky-200" }, post.category),
-            h("span", { className: "text-xs font-bold uppercase tracking-widest text-slate-400" }, post.readTime)
-          ),
-          h("h3", { className: "mt-5 text-2xl font-black text-white" }, post.title),
-          h("p", { className: "mt-3 text-sm leading-6 text-slate-300" }, post.description),
-          h("p", { className: "mt-4 text-xs font-bold uppercase tracking-[0.18em] text-sky-200/80" }, post.keywords),
-          h("button", { onClick: () => setActivePost(post), className: "mt-6 text-sm font-black text-sky-200" }, "Read Article →")
-        )
-      )
-    ),
-    h(ArticleModal, { post: activePost, onClose: () => setActivePost(null) })
+      posts.map((post) => h("article", { key: post.title, className: "poster-card rounded-lg p-5 transition duration-300" },
+        h("div", { className: "blog-meta" }, h("span", { className: "blog-meta-pill" }, post.category), h("span", null, `${post.readTime} read`)),
+        h("h2", { className: "mt-5 text-2xl font-black" }, post.title),
+        h("p", { className: "mt-3 text-sm leading-6 text-slate-300" }, post.description),
+        h("p", { className: "mt-4 text-xs font-bold uppercase tracking-[0.18em] text-sky-200/80" }, post.keywords),
+        h("button", { onClick: () => { setActivePost(post); window.scrollTo({ top: 0, behavior: "smooth" }); }, className: "mt-6 text-sm font-black text-sky-200" }, "Read Article →")
+      ))
+    )
   );
 }
 
@@ -412,7 +414,9 @@ function Marquee() {
   );
 }
 
-function Footer({ setPage }) { return h("footer",{className:"site-footer"},h("div",{className:"shell footer-top"},h("a",{href:"#top"},h("img",{src:"/assets/lm-media-solutions-logo.png",alt:"LM Media Solutions",className:"footer-logo"})),h("p",null,"The Design Partner for Growing Businesses."),h("div",{className:"footer-links"},[["Services","services"],["About","about"],["Process","process"],["Pricing","pricing"],["Articles","blog"],["Contact","contact"]].map(([label,id])=>h("a",{key:id,href:"#"+id},label)))),h("div",{className:"shell footer-bottom"},h("span",null,"© LM Media Solutions"),h("a",{href:"mailto:info@lmmediasolutions.co.za"},"info@lmmediasolutions.co.za"))) }
+function Footer({ setPage }) { return h("footer",{className:"site-footer"},h("div",{className:"shell footer-top"},h("a",{href:"#top",onClick:(event)=>{event.preventDefault();setPage("Home");window.scrollTo({top:0,behavior:"smooth"});}},h("img",{src:"/assets/lm-media-solutions-logo.png",alt:"LM Media Solutions",className:"footer-logo"})),h("p",null,"The Design Partner for Growing Businesses."),h("div",{className:"footer-links"},[["Services","services"],["About","about"],["Process","process"],["Pricing","pricing"],["Blogs","blogs"],["Contact","contact"]].map(([label,id])=>h("a",{key:id,href:label==="Blogs"?"#blogs":"#"+id,onClick:(event)=>{event.preventDefault();if(label==="Blogs"){setPage("Blogs");window.scrollTo({top:0,behavior:"smooth"});}else{if(document.querySelector(".blogs-page, .blog-page"))setPage("Home");window.setTimeout(()=>document.getElementById(id)?.scrollIntoView({behavior:"smooth",block:"start"}),0);}}},label)))),h("div",{className:"shell footer-bottom"},h("span",null,"© LM Media Solutions"),h("a",{href:"mailto:info@lmmediasolutions.co.za"},"info@lmmediasolutions.co.za"))) }
+
+function WhatsAppIcon() { return h("svg", { viewBox: "0 0 32 32", "aria-hidden": "true", className: "whatsapp-icon" }, h("path", { d: "M16 3.2A12.5 12.5 0 0 0 5.3 22.2L3.6 28.4l6.4-1.7A12.5 12.5 0 1 0 16 3.2Zm0 22.8c-2 0-4-.5-5.7-1.6l-.4-.2-3.8 1 1-3.7-.3-.4A10.2 10.2 0 1 1 16 26Z", fill: "currentColor" }), h("path", { d: "M21.6 18.4c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.5s0-.4 0-.5-.7-1.6-1-2.1-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.3 1 2.7 1.1 2.9c.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.3.2-1.5s-.3-.3-.6-.5Z", fill: "currentColor" })); }
 
 function FloatingCTA() {
   const scrollToCurrentTop = () => {
@@ -421,17 +425,18 @@ function FloatingCTA() {
     else window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return h("div", { className: "fixed bottom-5 right-5 z-[100] flex flex-col gap-3" },
-    h("a", { href: whatsapp, className: "btn-primary h-14 w-14 rounded-full text-xl", "aria-label": "WhatsApp" }, "WA"),
+    h("a", { href: whatsapp, className: "btn-primary h-14 w-14 rounded-full text-xl", "aria-label": "WhatsApp" }, h(WhatsAppIcon)),
     h("button", { type: "button", onClick: scrollToCurrentTop, className: "btn-secondary h-12 w-12 rounded-full text-lg scroll-top-button", "aria-label": "Scroll to top of current page" }, "↑")
   );
 }
 
-function HomePage({ setPage }) { return h(React.Fragment,null,h(Hero),h(Marquee),h(Services),h(Marquee),h(About),h(Process),h(Pricing),h(Blog),h(Contact)) }
+function HomePage({ setPage }) { return h(React.Fragment,null,h(Hero),h(Marquee),h(Services),h(Marquee),h(About),h(Process),h(Pricing),h(Contact)) }
 
-function Page({ page, setPage }) { return h(HomePage,{setPage}) }
+function Page({ page, setPage, activePost, setActivePost }) { return page === "Blogs" ? h(Blog,{activePost,setActivePost}) : h(HomePage,{setPage}) }
 
 function App() {
   const [page, setPage] = useState("Home");
+  const [activePost, setActivePost] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -450,15 +455,15 @@ function App() {
   }, [page]);
 
   useEffect(() => {
-    document.title = page === "Home" ? "LM Media Solutions | The Design Partner for Growing Businesses" : `${page} | LM Media Solutions`;
-  }, [page]);
+    document.title = activePost ? `${activePost.title} | LM Media Solutions` : page === "Home" ? "LM Media Solutions | The Design Partner for Growing Businesses" : `${page} | LM Media Solutions`;
+  }, [page, activePost]);
 
   return h("div", { id: "top" },
     loading && h("div", { className: "loading-screen" },
       h("div",{className:"loading-lockup",role:"status","aria-label":"Loading LM Media Solutions"},h("img",{src:"/assets/lm-media-solutions-mark.png",alt:"",className:"loading-mark"}),h("span",{className:"loading-name"},"LM Media Solutions"),h("span",{className:"loading-track","aria-hidden":"true"},h("span",{className:"loading-progress"})))
     ),
     h(Navbar, { page, setPage }),
-    h(Page, { page, setPage }),
+    h(Page, { page, setPage, activePost, setActivePost }),
     h(Footer, { setPage }),
     h(FloatingCTA)
   );

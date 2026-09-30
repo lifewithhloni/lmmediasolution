@@ -331,7 +331,27 @@ body { background-image:none!important; }
 .rounded-lg,.rounded-md { border-radius:2px!important; }
 [class*="text-slate-300"],[class*="text-slate-200"],[class*="text-slate-400"] { color:#555b60!important; }
 #pricing,#blog,#contact { scroll-margin-top:100px; }
+#pricing .pricing-kicker { color:#0B4F8A!important; }
+#pricing .pricing-group-title { color:#111!important; }
+#pricing .text-sky-200,#pricing .text-sky-200\/80 { color:#0B4F8A!important; }
+#pricing .bg-blue-500\/20 { background:#e8f1f7!important; }
 #pricing>div:first-child h2,#blog>h2,#contact h2 { color:#111!important; font-family:"DM Serif Display",Georgia,serif; font-size:clamp(42px,5vw,68px); line-height:1; font-weight:400; text-transform:none; }
+.blog-page { padding-top:42px; padding-bottom:100px; }
+.blog-back { display:inline-flex; align-items:center; gap:8px; margin:0 0 26px; padding:11px 15px; border:1px solid #0B4F8A; background:#fff; color:#0B4F8A; font-size:13px; font-weight:700; cursor:pointer; }
+.blog-back:hover { background:#0B4F8A; color:#fff; }
+.blog-article { max-width:850px; margin:0 auto; padding:clamp(24px,5vw,60px); background:#fff; border:1px solid #deded9; }
+.blog-meta { display:flex; align-items:center; gap:12px; color:#555b60; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+.blog-meta-pill { padding:7px 10px; background:#e8f1f7; color:#0B4F8A; }
+.blog-article h1,.blogs-page h1 { margin:25px 0 0; color:#111; font-family:"DM Serif Display",Georgia,serif; font-size:clamp(38px,6vw,66px); font-weight:400; line-height:1.03; }
+.blog-keywords { margin:19px 0 30px; color:#0B4F8A; font-size:12px; font-weight:700; letter-spacing:.12em; line-height:1.7; text-transform:uppercase; }
+.blog-body { display:grid; gap:22px; color:#343a3e; font-size:17px; line-height:1.9; }
+.blog-body p { margin:0; }
+.blog-article-actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:36px; padding-top:26px; border-top:1px solid #deded9; }
+.blog-back-bottom { margin:0; }
+.blogs-page .poster-card h2 { color:#111!important; font-family:"DM Serif Display",Georgia,serif; font-size:26px; font-weight:400; line-height:1.2; }
+.blogs-page .poster-card .blog-meta { color:#555b60; }
+.whatsapp-icon { display:block; width:29px; height:29px; }
+.fixed .whatsapp-icon { width:32px; height:32px; }
 .site-footer { padding:42px 0 22px; background:#eeeee9; border-top:1px solid #deded9; }
 .footer-top { display:grid; grid-template-columns:180px 1fr auto; align-items:center; gap:22px; }
 .footer-logo { width:125px; mix-blend-mode:multiply; }
