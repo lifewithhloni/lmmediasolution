@@ -95,10 +95,10 @@ const posts = [
     category: "SEO",
     title: "Local SEO Moves South African Businesses Should Prioritize",
     description: "Visibility compounds when your website, content, and search signals work together.",
-    keywords: "local SEO South Africa, Pretoria SEO, SEO optimization services",
+    keywords: "local SEO Gauteng, Soweto SEO, SEO optimization services",
     readTime: "5 min read",
     body: [
-      "Local SEO helps customers find your business when they search for services near them. Whether you are a salon in Pretoria North, a corporate service provider, or a growing online brand, your search visibility can directly influence the number of qualified inquiries you receive.",
+      "Local SEO helps customers find your business when they search for services near them. Whether you are a salon in Soweto, a corporate service provider in Johannesburg, or a growing online brand serving Gauteng, your search visibility can directly influence the number of qualified inquiries you receive.",
       "The first priority is clarity. Your website should clearly mention your services, your location, and the type of clients you serve. Search engines need structured signals, and customers need immediate confidence that they are in the right place.",
       "The next priority is useful content. Articles about website design, branding, social media management, beauty business growth, and digital marketing strategy help your business rank for relevant searches while proving expertise.",
       "Finally, make conversion easy. SEO traffic is only valuable if visitors can take action. That is why WhatsApp buttons, contact forms, fast-loading pages, and strong service pages matter. LM Media Solutions combines SEO optimization with conversion-focused website design so visibility can become real business growth."
@@ -357,7 +357,8 @@ function Contact() {
     h("div", { className: "grid gap-6 lg:grid-cols-[1fr_.85fr]" },
       h("div", null,
         h("h2", { className: "text-4xl font-black uppercase leading-none md:text-6xl" }, "Let’s Build Your Next Growth Move."),
-        h("p", { className: "mt-5 max-w-2xl text-slate-300" }, "Send your goals, preferred package, and timeline. LM Media Solutions will respond with the best next step for your business."),
+        h("p", { className: "mt-5 max-w-2xl text-slate-300" }, "LM Media Solutions supports businesses in Soweto and across Gauteng with thoughtful design and digital marketing. Send your goals, preferred package, and timeline, and we’ll recommend the best next step."),
+        h("a", { href: "/digital-marketing-soweto.html", className: "mt-4 inline-flex text-sm font-bold text-link" }, "Explore our services for Soweto businesses ↗"),
         h("form", { className: "mt-8 grid gap-4", onSubmit: sendInquiry },
           h("div", { className: "grid gap-4 md:grid-cols-2" },
             h("input", { className: "form-field", name: "name", placeholder: "Full name", "aria-label": "Full name", required: true }),
@@ -455,7 +456,7 @@ function App() {
   }, [page]);
 
   useEffect(() => {
-    document.title = activePost ? `${activePost.title} | LM Media Solutions` : page === "Home" ? "LM Media Solutions | The Design Partner for Growing Businesses" : `${page} | LM Media Solutions`;
+    document.title = activePost ? `${activePost.title} | LM Media Solutions` : page === "Home" ? "LM Media Solutions | Web Design & Digital Marketing in Soweto, Gauteng" : `${page} | LM Media Solutions`;
   }, [page, activePost]);
 
   return h("div", { id: "top" },
