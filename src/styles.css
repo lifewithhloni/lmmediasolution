@@ -351,7 +351,15 @@ body { background-image:none!important; }
 .blogs-page .poster-card h2 { color:#111!important; font-family:"DM Serif Display",Georgia,serif; font-size:26px; font-weight:400; line-height:1.2; }
 .blogs-page .poster-card .blog-meta { color:#555b60; }
 .whatsapp-icon { display:block; width:29px; height:29px; }
-.fixed .whatsapp-icon { width:32px; height:32px; }
+.whatsapp-float { display:grid; place-items:center; width:64px; height:64px; padding:0!important; border:2px solid #0B4F8A!important; border-radius:50%!important; background:#f5f5f2!important; color:#0B4F8A!important; box-shadow:none!important; transition:background .2s ease,color .2s ease,transform .2s ease; }
+.whatsapp-float:hover { background:#e8f1f7!important; color:#083c69!important; transform:translateY(-2px); }
+.whatsapp-float:focus-visible { outline:3px solid #5D9BD5; outline-offset:3px; }
+.whatsapp-float .whatsapp-icon { width:43px; height:43px; }
+.contact-details { display:grid; gap:14px; color:#555b60!important; }
+.contact-detail { display:grid; grid-template-columns:76px minmax(0,1fr); align-items:start; gap:10px; margin:0; line-height:1.55; }
+.contact-info-label { color:#0B4F8A!important; font-weight:700; }
+.contact-detail a { min-width:0; color:#343a3e; overflow-wrap:anywhere; }
+.contact-detail a:hover { color:#0B4F8A; }
 .site-footer { padding:42px 0 22px; background:#eeeee9; border-top:1px solid #deded9; }
 .footer-top { display:grid; grid-template-columns:180px 1fr auto; align-items:center; gap:22px; }
 .footer-logo { width:125px; mix-blend-mode:multiply; }

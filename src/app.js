@@ -379,11 +379,11 @@ function Contact() {
       ),
       h("aside", { className: "poster-card rounded-lg p-6" },
         h("h3", { className: "text-2xl font-black text-white" }, "Contact Info"),
-        h("div", { className: "mt-5 grid gap-4 text-sm text-slate-300" },
-          h("p", null, h("strong", { className: "text-white" }, "Phone: "), phone),
-          h("p", null, h("strong", { className: "text-white" }, "Email: "), "info@lmmediasolutions.co.za"),
-          h("p", null, h("strong", { className: "text-white" }, "Email: "), "lehlohonolomaishoane@gmail.com"),
-          h("p", null, h("strong", { className: "text-white" }, "Website: "), "lmmediasolutions.co.za")
+        h("div", { className: "contact-details mt-5 text-sm" },
+          h("p", { className: "contact-detail" }, h("strong", { className: "contact-info-label" }, "Phone"), h("a", { href: `tel:${phone.replace(/\s/g, "")}` }, phone)),
+          h("p", { className: "contact-detail" }, h("strong", { className: "contact-info-label" }, "Email"), h("a", { href: "mailto:info@lmmediasolutions.co.za" }, "info@lmmediasolutions.co.za")),
+          h("p", { className: "contact-detail" }, h("strong", { className: "contact-info-label" }, "Email"), h("a", { href: "mailto:lehlohonolomaishoane@gmail.com" }, "lehlohonolomaishoane@gmail.com")),
+          h("p", { className: "contact-detail" }, h("strong", { className: "contact-info-label" }, "Website"), h("a", { href: "https://lmmediasolutions.co.za", target: "_blank", rel: "noreferrer" }, "lmmediasolutions.co.za"))
         ),
         h("div", { className: "mt-6 overflow-hidden rounded-lg border border-blue-300/20" },
           h("iframe", {
@@ -425,7 +425,7 @@ function FloatingCTA() {
     else window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return h("div", { className: "fixed bottom-5 right-5 z-[100] flex flex-col gap-3" },
-    h("a", { href: whatsapp, className: "btn-primary h-14 w-14 rounded-full text-xl", "aria-label": "WhatsApp" }, h(WhatsAppIcon)),
+    h("a", { href: whatsapp, className: "whatsapp-float", "aria-label": "WhatsApp" }, h(WhatsAppIcon)),
     h("button", { type: "button", onClick: scrollToCurrentTop, className: "btn-secondary h-12 w-12 rounded-full text-lg scroll-top-button", "aria-label": "Scroll to top of current page" }, "↑")
   );
 }
