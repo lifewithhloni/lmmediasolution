@@ -1,31 +1,147 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="LM Media Solutions is a Business Branding & Development Studio helping South African businesses build professional identities, documents and websites." />
-  <link rel="canonical" href="https://lmmediasolutions.co.za/" />
-  <meta name="theme-color" content="#0B4F8A" />
-  <meta property="og:title" content="LM Media Solutions | Business Branding & Development Studio" />
-  <meta property="og:description" content="Professional branding, company profiles, presentations and website design for growing businesses." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://lmmediasolutions.co.za/" />
-  <meta property="og:image" content="https://lmmediasolutions.co.za/assets/lm-media-solutions-logo.png" />
-  <meta property="og:locale" content="en_ZA" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <title>LM Media Solutions | Business Branding & Development Studio</title>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","@id":"https://lmmediasolutions.co.za/#organization","name":"LM Media Solutions","url":"https://lmmediasolutions.co.za/","logo":"https://lmmediasolutions.co.za/assets/lm-media-solutions-logo.png","email":"info@lmmediasolutions.co.za","telephone":"+27726559998","areaServed":{"@type":"AdministrativeArea","name":"Gauteng, South Africa"}}
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./src/styles.css" />
-</head>
-<body>
-  <div id="root"></div>
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="./src/app.js"></script>
-</body>
+
+<!DOCTYPE html>
+<html lang="en-ZA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO metadata -->
+    <meta
+      name="description"
+      content="LM Media Solutions is a Business Branding & Development Studio helping South African businesses build professional brands, company profiles, presentations and websites."
+    />
+    <meta name="theme-color" content="#0B4F8A" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="https://lmmediasolutions.co.za/" />
+
+    <!-- Open Graph / Social sharing -->
+    <meta
+      property="og:title"
+      content="LM Media Solutions | Business Branding & Development Studio"
+    />
+    <meta
+      property="og:description"
+      content="Professional branding, company profiles, presentations and website design for growing businesses across South Africa."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lmmediasolutions.co.za/" />
+    <meta
+      property="og:image"
+      content="https://lmmediasolutions.co.za/assets/lm-media-solutions-logo.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="LM Media Solutions logo"
+    />
+    <meta property="og:locale" content="en_ZA" />
+    <meta property="og:site_name" content="LM Media Solutions" />
+
+    <!-- X / Twitter sharing -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="LM Media Solutions | Business Branding & Development Studio"
+    />
+    <meta
+      name="twitter:description"
+      content="Professional branding, company profiles, presentations and website design for growing businesses."
+    />
+    <meta
+      name="twitter:image"
+      content="https://lmmediasolutions.co.za/assets/lm-media-solutions-logo.png"
+    />
+
+    <title>
+      LM Media Solutions | Business Branding & Development Studio
+    </title>
+
+    <!-- Organization structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://lmmediasolutions.co.za/#organization",
+        "name": "LM Media Solutions",
+        "url": "https://lmmediasolutions.co.za/",
+        "logo": "https://lmmediasolutions.co.za/assets/lm-media-solutions-logo.png",
+        "description": "A Business Branding & Development Studio helping South African businesses build professional identities, company profiles, presentations and websites.",
+        "email": "info@lmmediasolutions.co.za",
+        "telephone": "+27726559998",
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Gauteng, South Africa"
+        },
+        "sameAs": [
+          "https://www.facebook.com/lm.media.solution",
+          "https://www.instagram.com/lm_media_solutions/",
+          "https://www.linkedin.com/company/lm-media-solutions/"
+        ]
+      }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#050814",
+              midnight: "#081120",
+              electric: "#007BFF",
+              neon: "#27A8FF",
+              frost: "#EAF6FF",
+              primary: "#0B4F8A",
+              secondary: "#5D9BD5"
+            },
+            fontFamily: {
+              display: ["DM Serif Display", "Georgia", "serif"],
+              body: ["DM Sans", "Arial", "sans-serif"]
+            }
+          }
+        }
+      };
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+
+  <body>
+    <!-- React application -->
+    <div id="root"></div>
+
+    <!-- Application dependencies -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/framer-motion@11/dist/framer-motion.js"
+    ></script>
+
+    <!-- Main application -->
+    <script src="./src/app.js"></script>
+  </body>
 </html>
