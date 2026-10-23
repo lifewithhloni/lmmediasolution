@@ -15,7 +15,7 @@ export const site = {
   phoneDisplay: "072 655 9998",
   phoneIntl: "+27726559998",
   emails: ["info@lmmediasolutions.co.za", "lehlohonolomaishoane@gmail.com"],
-  whatsapp: "27726559998",
+  whatsapp: "27615423918", // business WhatsApp: 061 542 3918
   social: [
     ["Facebook", "https://www.facebook.com/lm.media.solution"],
     ["Instagram", "https://www.instagram.com/lm_media_solutions/"],
