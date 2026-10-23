@@ -1,5 +1,5 @@
 // Verifies the generated site: links, anchors, metadata, headings, images, JSON-LD and pricing.
-// Usage: node scripts/check.mjs   (run after node scripts/build.mjs)
+// Usage: node scripts/check.mjs   (run after npm run generate)
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { dirname, join, relative } from "node:path";

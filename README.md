@@ -4,7 +4,7 @@ Static website for LM Media Solutions, a Business Branding & Development Studio.
 
 ## Editing content
 
-All content lives in two files. Edit them, then rebuild.
+All content lives in two files. Edit them, then run `npm run generate` and commit the regenerated files.
 
 - `src/content.mjs`: contact details, navigation, services, divider labels, branding packages, website packages, exclusions, the Who We Are copy and the enquiry form options. **Prices are set here only.**
 - `src/blog.mjs`: blog categories and articles (slug, SEO title, description, dates, image and body).
@@ -14,10 +14,10 @@ All content lives in two files. Edit them, then rebuild.
 Requires Node.js 18 or later. No `npm install` is needed.
 
 ```powershell
-npm run build   # regenerate all HTML pages, sitemap.xml, robots.txt and redirects
-npm run check   # verify links, anchors, metadata, headings, images, JSON-LD and prices
-npm test        # build + check
-npm start       # local server at http://127.0.0.1:4173
+npm run generate  # regenerate all HTML pages, sitemap.xml, robots.txt, redirects and vercel.json
+npm run check     # verify links, anchors, metadata, headings, images, JSON-LD and prices
+npm test          # build + check
+npm start         # local server at http://127.0.0.1:4173
 ```
 
 To regenerate responsive images after adding a photo to `assets/` (Windows):
@@ -40,10 +40,7 @@ By default, the form validates the visitor's input and then opens their email ap
 
 ## Deployment
 
-Upload the repository contents (excluding `.git`, `scripts/` and `.claude/` if you prefer) to the web root. The host must serve `folder/index.html` for `folder/` URLs, which is standard on Apache/cPanel, Netlify, GitHub Pages and similar hosts. Where the host supports it, configure:
-
-- the 301 redirects listed in `redirects.json`
-- `404.html` as the custom error page
+The site is deployed on Vercel from GitHub. The generated HTML is committed, so Vercel serves the files as they are with no build step. There is deliberately no `build` script in `package.json`: Vercel would run it and then fail looking for a `public/` output folder. `vercel.json` also applies permanent (301) redirects for the legacy URLs and adds trailing slashes; Vercel serves `404.html` for missing pages.
 
 ## Contact Details
 

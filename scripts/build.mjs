@@ -1,5 +1,5 @@
 // Static site generator for LM Media Solutions (no dependencies).
-// Usage: node scripts/build.mjs
+// Usage: npm run generate  (node scripts/build.mjs)
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -612,6 +612,11 @@ ${written.filter((p) => p !== "/404.html").map((p) => `  <url>\n    <loc>${abs(p
 writeFileSync(join(root, "sitemap.xml"), sitemap);
 writeFileSync(join(root, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /lm-media-solutions-website.zip\n\nSitemap: ${site.url}/sitemap.xml\n`);
 writeFileSync(join(root, "redirects.json"), JSON.stringify(redirects, null, 2) + "\n");
+// Vercel hosting: the committed files are served as they are; add real 301 redirects and trailing slashes.
+writeFileSync(join(root, "vercel.json"), JSON.stringify({
+  trailingSlash: true,
+  redirects: Object.entries(redirects).map(([source, destination]) => ({ source, destination, permanent: true })),
+}, null, 2) + "\n");
 
 console.log(`Built ${written.length} pages, ${Object.keys(redirects).length} redirects, sitemap and robots.txt.`);
 if (!existsSync(join(root, "assets/img"))) console.warn("assets/img missing: run scripts/optimise-images.ps1");
