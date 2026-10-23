@@ -1,0 +1,14 @@
+{
+  "name": "lm-media-solutions-website",
+  "private": true,
+  "description": "LM Media Solutions website: static pages generated from src/content.mjs and src/blog.mjs",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node scripts/build.mjs && node scripts/check.mjs",
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
