@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /lm-media-solutions-website.zip
 
 Sitemap: https://lmmediasolutions.co.za/sitemap.xml

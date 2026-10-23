@@ -1,0 +1,25 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/web-design-gauteng.html",
+      "destination": "/website-design/",
+      "permanent": true
+    },
+    {
+      "source": "/web-design-soweto.html",
+      "destination": "/website-design/",
+      "permanent": true
+    },
+    {
+      "source": "/digital-marketing-gauteng.html",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/digital-marketing-soweto.html",
+      "destination": "/services/",
+      "permanent": true
+    }
+  ]
+}
