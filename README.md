@@ -44,7 +44,7 @@ The site is deployed on Vercel from GitHub. The generated HTML is committed, so 
 
 ## Contact Details
 
-- Phone: 0726559998
+- Phone and WhatsApp: 061 542 3918
 - Email: info@lmmediasolutions.co.za
 - Email: lehlohonolomaishoane@gmail.com
 - Website: lmmediasolutions.co.za

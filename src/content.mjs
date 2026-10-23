@@ -11,11 +11,11 @@ export const site = {
   founded: "2023",
   logo: "/assets/lm-media-solutions-logo.png",
   location: "Pretoria North, Gauteng, South Africa",
-  phone: "0726559998",
-  phoneDisplay: "072 655 9998",
-  phoneIntl: "+27726559998",
+  phone: "0615423918",
+  phoneDisplay: "061 542 3918",
+  phoneIntl: "+27615423918",
   emails: ["info@lmmediasolutions.co.za", "lehlohonolomaishoane@gmail.com"],
-  whatsapp: "27615423918", // business WhatsApp: 061 542 3918
+  whatsapp: "27615423918",
   social: [
     ["Facebook", "https://www.facebook.com/lm.media.solution"],
     ["Instagram", "https://www.instagram.com/lm_media_solutions/"],

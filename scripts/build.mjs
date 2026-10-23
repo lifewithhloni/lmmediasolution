@@ -554,7 +554,7 @@ function contactPage() {
   return layout({
     path: "/contact/",
     title: "Contact LM Media Solutions | Start Your Branding or Website Project",
-    description: "Start your branding, company profile or website project with LM Media Solutions. Call 072 655 9998, email us or chat on WhatsApp.",
+    description: `Start your branding, company profile or website project with LM Media Solutions. Call ${site.phoneDisplay}, email us or chat on WhatsApp.`,
     body,
   });
 }
